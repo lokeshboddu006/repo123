@@ -1,0 +1,3 @@
+@echo off
+echo Checking PostgreSQL service on port 5432...
+powershell -NoProfile -Command "$user = $env:USERPROFILE; $bin = \"$user\pgsql\pgsql\bin\postgres.exe\"; $data = \"$user\pgsql\data\"; if (!(Test-NetConnection -ComputerName 127.0.0.1 -Port 5432 -InformationLevel Quiet)) { Start-Process $bin -ArgumentList \"-D `\"$data`\" -p 5432\" -WindowStyle Hidden; Start-Sleep -Seconds 3; Write-Host 'PostgreSQL started.' } else { Write-Host 'PostgreSQL is already running on port 5432.' }"
